@@ -22,7 +22,7 @@
             z-index: 1;
             position: fixed;
             top: 0;left: 0;width: 100%;height: 100%;
-            background: #888;
+            background: #ccc;
             justify-content: center;
             align-items: center;
         }
@@ -198,7 +198,9 @@
         </div>
     </section>
     <script>
-        siteWelcome.classList.remove('active');
+        setTimeout (function(){
+            siteWelcome.classList.remove('active')
+        },3000)
     </script>
 </body>
 

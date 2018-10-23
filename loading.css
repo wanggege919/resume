@@ -1,6 +1,6 @@
 .loading {
-    width: 200px;
-    height: 200px;  
+    /* width: 200px;
+    height: 200px;   */
     position: relative;
   }
   
@@ -8,23 +8,23 @@
     content: '';
     background: #000;
     position: absolute;
-    /* left: 100px;
+    left: 100px;
     top:100px;
-    transform: translate(-50%,-50%); *//*让定位的盒子走自己的一半*/
-    left: 0;
+    transform: translate(-50%,-50%);/*让定位的盒子走自己的一半*/
+    /* left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    margin: auto;
+    margin: auto; */
     border-radius: 50%;
-    animation: scale 2s linear infinite;
+    animation: s 2s linear infinite;
   }
   .loading::after{
     animation-delay: 1s;
   }
   
   
-  @keyframes scale{
+  @keyframes s{
     0%{
       width: 0;height: 0;opacity:1;
     }
