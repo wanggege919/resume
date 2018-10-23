@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人简历</title>
     <link rel="stylesheet" href="./a.css">
+    <link rel="stylesheet" href="./loading.css">
     <script src="//at.alicdn.com/t/font_864312_3a5sbcl2y46.js"></script>
     <style type="text/css">
         .icon {
-           width: 1em; height: 1em;
-           vertical-align: -0.15em;
-           fill: currentColor;
-           overflow: hidden;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        .site-welcome{
+            display: none;
+            z-index: 1;
+            position: fixed;
+            top: 0;left: 0;width: 100%;height: 100%;
+            background: #888;
+            justify-content: center;
+            align-items: center;
+        }
+        .site-welcome.active{
+            display: flex;
         }
     </style>
 </head>
-<body>
 
+<body>
+    <div id="siteWelcome" class="site-welcome active">
+        <div class="loading"></div>
+    </div>
     <div class="topNavBar clearfix">
-        <a class="logo" href="#" alt="logo" >
+        <a class="logo" href="#" alt="logo">
             <span class="rs">RS</span><span class="card">card</span>
         </a>
-        <nav>   
+        <nav>
             <ul class="clearfix">
                 <li><a href="#">关于</a></li>
                 <li><a href="#">技能</a></li>
@@ -45,7 +63,7 @@
                 <div class="picture">
                     <img src="./img/头像.jpg" width="299px" height="347px" alt="这是我的头像">
                 </div>
-                <div class="text">                
+                <div class="text">
                     <span class="welcome">
                         您好
                         <span class="triangle"></span>
@@ -62,43 +80,43 @@
                         <dd>1914161290@qq.com</dd>
                         <dt>手机</dt>
                         <dd>18848956986</dd>
-                    </dl>  
+                    </dl>
                 </div>
-             </div>
+            </div>
             <footer class="media">
                 <a href="#">
                     <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-githup"></use>
-                    </svg>
-                </a>               
-                <a href="#">
-                    <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-icon"></use>
+                        <use xlink:href="#icon-githup"></use>
                     </svg>
                 </a>
                 <a href="#">
                     <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-qq"></use>
+                        <use xlink:href="#icon-icon"></use>
                     </svg>
                 </a>
                 <a href="#">
                     <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-weixin"></use>
+                        <use xlink:href="#icon-qq"></use>
                     </svg>
                 </a>
                 <a href="#">
                     <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-weibo"></use>
+                        <use xlink:href="#icon-weixin"></use>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
                     </svg>
                 </a>
             </footer>
-            
+
         </div>
         <p class="downloadResume-wrapper">
             <a href="./resume.pdf.docx" class="downloadResume" download>下载 PDF 地址</a>
         </p>
         <p class="self-introductiob">
-            刘书旺  是一名前端开发工程师 <br>
+            刘书旺 是一名前端开发工程师 <br>
             技能: 擅长 HTML CSS JS的知识要点,熟悉jquery vue react等框架
         </p>
     </main>
@@ -116,7 +134,7 @@
                 <div class="progressBar">
                     <div class="progress two"></div>
                 </div>
-             </li>
+            </li>
             <li>
                 <h3>jQuery</h3>
                 <div class="progressBar ">
@@ -156,18 +174,18 @@
             </div>
         </nav>
         <script>
-            portfolio1.onclick= function(){
-                portfolioBar.className="bar status-1"
+            portfolio1.onclick = function () {
+                portfolioBar.className = "bar status-1"
             }
-            portfolio2.onclick= function(){
-                portfolioBar.className="bar status-2"
+            portfolio2.onclick = function () {
+                portfolioBar.className = "bar status-2"
             }
-            portfolio3.onclick= function(){
-                portfolioBar.className="bar status-3"
+            portfolio3.onclick = function () {
+                portfolioBar.className = "bar status-3"
             }
-            
+
         </script>
-        <div class="jobs clearfix">           
+        <div class="jobs clearfix">
             <div class="big">
                 <img src="./img/1.jpg" alt="作品一" width="600" height="500px">
             </div>
@@ -176,11 +194,12 @@
             </div>
             <div class="small2">
                 <img src="./img/3.jpg" alt="作品三" width="300" height="230">
-            </div>      
+            </div>
         </div>
     </section>
+    <script>
+        siteWelcome.classList.remove('active');
+    </script>
 </body>
+
 </html>
-
-
-
