@@ -17,16 +17,21 @@
             fill: currentColor;
             overflow: hidden;
         }
-        .site-welcome{
+
+        .site-welcome {
             display: none;
             z-index: 1;
             position: fixed;
-            top: 0;left: 0;width: 100%;height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: #ccc;
             justify-content: center;
             align-items: center;
         }
-        .site-welcome.active{
+
+        .site-welcome.active {
             display: flex;
         }
     </style>
@@ -36,18 +41,32 @@
     <div id="siteWelcome" class="site-welcome active">
         <div class="loading"></div>
     </div>
-    <div class="topNavBar clearfix">
+    <div id="topNavBar" class="topNavBar clearfix">
         <a class="logo" href="#" alt="logo">
             <span class="rs">RS</span><span class="card">card</span>
         </a>
-        <nav>
+        <nav class="menu">
             <ul class="clearfix">
-                <li><a href="#">关于</a></li>
-                <li><a href="#">技能</a></li>
-                <li><a href="#">投资组合</a></li>
+                <li><a href="#siteAbout">关于</a></li>
+                <li><a href="#siteSkills">技能</a></li>
+                <li>
+                    <a href="#siteWorks">作品</a>
+                    <ul class="submenu">
+                        <li>作品1</li>
+                        <li>作品2</li>
+                        <li>作品3</li>
+                    </ul>
+                </li>
                 <li><a href="#">经验</a></li>
                 <li><a href="#">价钱</a></li>
-                <li><a href="#">博客</a></li>
+                <li>
+                    <a href="#">博客</a>
+                    <ul class="submenu">
+                        <li>博客1</li>
+                        <li>博客2</li>
+                        <li>博客3</li>
+                    </ul>
+                </li>
                 <li><a href="#">日历</a></li>
                 <li><a href="#">联系</a></li>
                 <li><a href="#">其他</a></li>
@@ -58,7 +77,7 @@
         <div class="mask"></div>
     </div>
     <main style="margin-top: -340px">
-        <div class="userCard">
+        <div data-x id="siteAbout" class="userCard">
             <div class="textandpicture clearfix">
                 <div class="picture">
                     <img src="./img/头像.jpg" width="299px" height="347px" alt="这是我的头像">
@@ -120,7 +139,7 @@
             技能: 擅长 HTML CSS JS的知识要点,熟悉jquery vue react等框架
         </p>
     </main>
-    <section class="skills">
+    <section data-x id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -161,7 +180,8 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+
+    <section data-x id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -197,10 +217,99 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+    <!--这是插入的一个库-->
     <script>
-        setTimeout (function(){
+        //加载动画
+        setTimeout(function () {
             siteWelcome.classList.remove('active')
-        },3000)
+        })
+        let spacialTags = document.querySelectorAll('[data-x]')
+        for (let i = 0; i < spacialTags.length; i++) {
+            spacialTags[i].classList.add('offSet')  //为特殊标签添加  offset 类               
+        }
+        yyy()
+        //sticky topNavBar 制作
+        window.onscroll = function () {
+            if (window.scrollY > 0) {
+                topNavBar.classList.add('sticky')
+            } else {
+                topNavBar.classList.remove('sticky')
+            }
+            // console.log(window.scrollY)
+            yyy()
+        }
+        function yyy(){
+            let spacialTags = document.querySelectorAll('[data-x]')
+            let minIndex = 0
+            for (let i = 1; i < spacialTags.length; i++) {
+                if (Math.abs(spacialTags[i].offsetTop - window.scrollY) < Math.abs(spacialTags[minIndex].offsetTop - window.scrollY)) {
+                    minIndex = i
+                }
+            }
+            spacialTags[minIndex].classList.remove('offSet')
+            for (let i = 0; i < spacialTags.length; i++) {
+                spacialTags[i].classList.remove('active')
+            }
+            spacialTags[minIndex].classList.add('active')
+            let id = spacialTags[minIndex].id
+            console.log(id)
+            let a = document.querySelector('a[href="#' + id + '"]')
+            let li = a.parentNode
+            let brothersAndMe = li.parentNode.children
+            for (let i = 0; i < brothersAndMe.length; i++) {
+                brothersAndMe[i].classList.remove('highLight')
+            }
+            li.classList.add('highLight')
+        }
+        let liTags = document.querySelectorAll('nav.menu > ul > li')
+        // console.log(liTags)
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function (x) {//不能用aTages[0],aTages[1]来找元素,因为不可靠
+                let li = x.currentTarget.classList.add('active')
+                // console.log(a.nextSibling.nextSibling)
+                // let brother = li.getElementsByTagName('ul')[0]
+                // brother.classList.add('active')
+            }
+            liTags[i].onmouseleave = function (x) {
+                let li = x.currentTarget.classList.remove('active')
+                // let brother = li.getElementsByTagName('ul')[0]
+                // brother.classList.remove('active')
+            }
+        }
+        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
+        // console.log(aTags)
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+
+
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function (x) {
+                x.preventDefault();
+                let a = x.currentTarget
+                let href = a.getAttribute('href')
+                let element = document.querySelector(href)
+                let top = element.offsetTop
+                // window.scrollTo(0,top-80)
+                let currentTop = window.scrollY
+                let targetTop = top - 80
+                let s = targetTop - currentTop
+                var t = Math.abs((s / 100) * 300)
+                if (t > 500) { t = 500 }
+                var coords = { y: currentTop };
+                var tween = new TWEEN.Tween(coords)
+                    .to({ y: targetTop }, t)
+                    .easing(TWEEN.Easing.Quadratic.InOut)
+                    .onUpdate(function () {
+                        window.scrollTo(0, coords.y)
+                    })
+                    .start();
+            }
+        }
+
     </script>
 </body>
 
