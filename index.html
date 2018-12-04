@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人简历</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css">
     <link rel="stylesheet" href="./a.css">
     <link rel="stylesheet" href="./loading.css">
     <script src="//at.alicdn.com/t/font_864312_3a5sbcl2y46.js"></script>
@@ -17,16 +18,21 @@
             fill: currentColor;
             overflow: hidden;
         }
-        .site-welcome{
+
+        .site-welcome {
             display: none;
             z-index: 1;
             position: fixed;
-            top: 0;left: 0;width: 100%;height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: #ccc;
             justify-content: center;
             align-items: center;
         }
-        .site-welcome.active{
+
+        .site-welcome.active {
             display: flex;
         }
     </style>
@@ -36,18 +42,32 @@
     <div id="siteWelcome" class="site-welcome active">
         <div class="loading"></div>
     </div>
-    <div class="topNavBar clearfix">
+    <div id="topNavBar" class="topNavBar clearfix">
         <a class="logo" href="#" alt="logo">
             <span class="rs">RS</span><span class="card">card</span>
         </a>
-        <nav>
+        <nav class="menu">
             <ul class="clearfix">
-                <li><a href="#">关于</a></li>
-                <li><a href="#">技能</a></li>
-                <li><a href="#">投资组合</a></li>
+                <li><a href="#siteAbout">关于</a></li>
+                <li><a href="#siteSkills">技能</a></li>
+                <li>
+                    <a href="#siteWorks">作品</a>
+                    <ul class="submenu">
+                        <li>作品1</li>
+                        <li>作品2</li>
+                        <li>作品3</li>
+                    </ul>
+                </li>
                 <li><a href="#">经验</a></li>
                 <li><a href="#">价钱</a></li>
-                <li><a href="#">博客</a></li>
+                <li>
+                    <a href="#">博客</a>
+                    <ul class="submenu">
+                        <li>博客1</li>
+                        <li>博客2</li>
+                        <li>博客3</li>
+                    </ul>
+                </li>
                 <li><a href="#">日历</a></li>
                 <li><a href="#">联系</a></li>
                 <li><a href="#">其他</a></li>
@@ -58,7 +78,7 @@
         <div class="mask"></div>
     </div>
     <main style="margin-top: -340px">
-        <div class="userCard">
+        <div id="siteAbout" class="userCard">
             <div class="textandpicture clearfix">
                 <div class="picture">
                     <img src="./img/头像.jpg" width="299px" height="347px" alt="这是我的头像">
@@ -120,7 +140,7 @@
             技能: 擅长 HTML CSS JS的知识要点,熟悉jquery vue react等框架
         </p>
     </main>
-    <section class="skills">
+    <section id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -161,47 +181,105 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+    <section id="siteWorks" class="portfolio">
         <h2>作品集</h2>
-        <nav>
-            <ol class="clearfix">
-                <li id="portfolio1">全部</li>
-                <li id="portfolio2">框架</li>
-                <li id="portfolio3">原生js&amp;css</li>
-            </ol>
-            <div id="portfolioBar" class="bar status-1">
-                <div class="bar-inner"></div>
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->       
+                    <img class="swiper-slide" src="./img/导航.jpg" alt="作品一" >
+                    <img class="swiper-slide" src="./img/canvas 画板.jpg" alt="作品二">               
+                    <img class="swiper-slide" src="./img/轮播.jpg" alt="作品三">
+                
             </div>
-        </nav>
-        <script>
-            portfolio1.onclick = function () {
-                portfolioBar.className = "bar status-1"
-            }
-            portfolio2.onclick = function () {
-                portfolioBar.className = "bar status-2"
-            }
-            portfolio3.onclick = function () {
-                portfolioBar.className = "bar status-3"
-            }
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
 
-        </script>
-        <div class="jobs clearfix">
-            <div class="big">
-                <img src="./img/1.jpg" alt="作品一" width="600" height="500px">
-            </div>
-            <div class="small1">
-                <img src="./img/2.jpg" alt="作品二" width="300" height="230">
-            </div>
-            <div class="small2">
-                <img src="./img/3.jpg" alt="作品三" width="300" height="230">
-            </div>
+            <!-- If we need navigation buttons -->
+            
+
+
         </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.min.js"></script>
     <script>
-        setTimeout (function(){
-            siteWelcome.classList.remove('active')
-        },3000)
+        var mySwiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        })
     </script>
+    <script>
+        //加载动画
+        setTimeout(function () {
+            siteWelcome.classList.remove('active')
+        })
+
+        //sticky topNavBar 制作
+        window.onscroll = function () {
+            if (window.scrollY > 0) {
+                topNavBar.classList.add('sticky')
+            } else {
+                topNavBar.classList.remove('sticky')
+            }
+        }
+
+        let liTags = document.querySelectorAll('nav.menu > ul > li')
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function (x) {//不能用aTages[0],aTages[1]来找元素,因为不可靠
+                let li = x.currentTarget.classList.add('active')
+                // console.log(a.nextSibling.nextSibling)
+                // let brother = li.getElementsByTagName('ul')[0]
+                // brother.classList.add('active')
+            }
+            liTags[i].onmouseleave = function (x) {
+                let li = x.currentTarget.classList.remove('active')
+                // let brother = li.getElementsByTagName('ul')[0]
+                // brother.classList.remove('active')
+            }
+        }
+        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
+        // console.log(aTags)
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function (x) {
+                x.preventDefault();
+                let a = x.currentTarget
+                let href = a.getAttribute('href')
+                let element = document.querySelector(href)
+                let top = element.offsetTop
+                // window.scrollTo(0,top-80)
+                let n = 25  //移动的次数
+                let duration = 500 / n  //多长时间动一次
+                let currentTop = window.scrollY
+                let targetTop = top - 80
+                let distance = (targetTop - currentTop) / n  //每次移动的距离
+                let i = 0
+                let id = setInterval(() => {
+                    if (i === n) {
+                        window.clearInterval(id)
+                        return
+                    }
+                    i = i + 1
+                    window.scrollTo(0, currentTop + distance * i)
+                }, duration)
+            }
+        }
+
+    </script>
+
 </body>
 
 </html>
