@@ -34,19 +34,12 @@ h1,h2,h3,h4,h5,h6{
     left: 0;
     width: 100%;
     color: #bec1c4;
-<<<<<<< HEAD
     
-=======
->>>>>>> f0d689c09895c487838edd7def39269384560446
 }
 .topNavBar.sticky{
     background: white;
     padding: 10px 0px 10px 20px;
-<<<<<<< HEAD
     z-index: 11;
-=======
-    z-index: 1;
->>>>>>> f0d689c09895c487838edd7def39269384560446
     transition: all 0.25s linear;
     box-shadow: 0 0 10px rgba(0,0,0,0.6);
     color: #4c535f;
@@ -75,12 +68,7 @@ h1,h2,h3,h4,h5,h6{
     display: block;
     position: relative;
 } 
-<<<<<<< HEAD
 .topNavBar > nav > ul > li.active > a::after {
-=======
-.topNavBar > nav > ul > li.active > a::after,
-.topNavBar > nav > ul > li.highLight > a::after{
->>>>>>> f0d689c09895c487838edd7def39269384560446
     /* border-bottom: 3px solid #e8676b; */
     content: '';
     display: block;
@@ -387,34 +375,3 @@ section.portfolio .swiper-button-next{
 
 
 
-<<<<<<< HEAD
-=======
-section .jobs{
-    width: 930px;
-    height: 500px;
-    position: relative;
-}
-section .jobs .big{
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-section .jobs .small1{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-section .jobs .small2{
-    position: absolute;
-    bottom: -4px;
-    right: 0;
-}
-
-[data-x].offSet{
-    transform: translateY(100px);
-}
-[data-x]{
-    transform: translateY(0);
-    transition: all 0.5s;
-}
->>>>>>> f0d689c09895c487838edd7def39269384560446
