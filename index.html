@@ -78,7 +78,11 @@
         <div class="mask"></div>
     </div>
     <main style="margin-top: -340px">
+<<<<<<< HEAD
         <div id="siteAbout" class="userCard">
+=======
+        <div data-x id="siteAbout" class="userCard">
+>>>>>>> f0d689c09895c487838edd7def39269384560446
             <div class="textandpicture clearfix">
                 <div class="picture">
                     <img src="./img/头像.jpg" width="299px" height="347px" alt="这是我的头像">
@@ -140,7 +144,11 @@
             技能: 擅长 HTML CSS JS的知识要点,熟悉jquery vue react等框架
         </p>
     </main>
+<<<<<<< HEAD
     <section id="siteSkills" class="skills">
+=======
+    <section data-x id="siteSkills" class="skills">
+>>>>>>> f0d689c09895c487838edd7def39269384560446
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -181,7 +189,12 @@
             </li>
         </ol>
     </section>
+<<<<<<< HEAD
     <section id="siteWorks" class="portfolio">
+=======
+
+    <section data-x id="siteWorks" class="portfolio">
+>>>>>>> f0d689c09895c487838edd7def39269384560446
         <h2>作品集</h2>
         <!-- Slider main container -->
         <div class="swiper-container">
@@ -204,6 +217,7 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </section>
+<<<<<<< HEAD
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.min.js"></script>
     <script>
         var mySwiper = new Swiper('.swiper-container', {
@@ -222,12 +236,24 @@
             },
         })
     </script>
+=======
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+    <!--这是插入的一个库-->
+>>>>>>> f0d689c09895c487838edd7def39269384560446
     <script>
         //加载动画
         setTimeout(function () {
             siteWelcome.classList.remove('active')
         })
+<<<<<<< HEAD
 
+=======
+        let spacialTags = document.querySelectorAll('[data-x]')
+        for (let i = 0; i < spacialTags.length; i++) {
+            spacialTags[i].classList.add('offSet')  //为特殊标签添加  offset 类               
+        }
+        yyy()
+>>>>>>> f0d689c09895c487838edd7def39269384560446
         //sticky topNavBar 制作
         window.onscroll = function () {
             if (window.scrollY > 0) {
@@ -235,9 +261,40 @@
             } else {
                 topNavBar.classList.remove('sticky')
             }
+<<<<<<< HEAD
         }
 
         let liTags = document.querySelectorAll('nav.menu > ul > li')
+=======
+            // console.log(window.scrollY)
+            yyy()
+        }
+        function yyy(){
+            let spacialTags = document.querySelectorAll('[data-x]')
+            let minIndex = 0
+            for (let i = 1; i < spacialTags.length; i++) {
+                if (Math.abs(spacialTags[i].offsetTop - window.scrollY) < Math.abs(spacialTags[minIndex].offsetTop - window.scrollY)) {
+                    minIndex = i
+                }
+            }
+            spacialTags[minIndex].classList.remove('offSet')
+            for (let i = 0; i < spacialTags.length; i++) {
+                spacialTags[i].classList.remove('active')
+            }
+            spacialTags[minIndex].classList.add('active')
+            let id = spacialTags[minIndex].id
+            console.log(id)
+            let a = document.querySelector('a[href="#' + id + '"]')
+            let li = a.parentNode
+            let brothersAndMe = li.parentNode.children
+            for (let i = 0; i < brothersAndMe.length; i++) {
+                brothersAndMe[i].classList.remove('highLight')
+            }
+            li.classList.add('highLight')
+        }
+        let liTags = document.querySelectorAll('nav.menu > ul > li')
+        // console.log(liTags)
+>>>>>>> f0d689c09895c487838edd7def39269384560446
         for (let i = 0; i < liTags.length; i++) {
             liTags[i].onmouseenter = function (x) {//不能用aTages[0],aTages[1]来找元素,因为不可靠
                 let li = x.currentTarget.classList.add('active')
@@ -253,6 +310,16 @@
         }
         let aTags = document.querySelectorAll('nav.menu > ul > li > a')
         // console.log(aTags)
+<<<<<<< HEAD
+=======
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+
+
+>>>>>>> f0d689c09895c487838edd7def39269384560446
         for (let i = 0; i < aTags.length; i++) {
             aTags[i].onclick = function (x) {
                 x.preventDefault();
@@ -261,6 +328,7 @@
                 let element = document.querySelector(href)
                 let top = element.offsetTop
                 // window.scrollTo(0,top-80)
+<<<<<<< HEAD
                 let n = 25  //移动的次数
                 let duration = 500 / n  //多长时间动一次
                 let currentTop = window.scrollY
@@ -275,6 +343,21 @@
                     i = i + 1
                     window.scrollTo(0, currentTop + distance * i)
                 }, duration)
+=======
+                let currentTop = window.scrollY
+                let targetTop = top - 80
+                let s = targetTop - currentTop
+                var t = Math.abs((s / 100) * 300)
+                if (t > 500) { t = 500 }
+                var coords = { y: currentTop };
+                var tween = new TWEEN.Tween(coords)
+                    .to({ y: targetTop }, t)
+                    .easing(TWEEN.Easing.Quadratic.InOut)
+                    .onUpdate(function () {
+                        window.scrollTo(0, coords.y)
+                    })
+                    .start();
+>>>>>>> f0d689c09895c487838edd7def39269384560446
             }
         }
 
